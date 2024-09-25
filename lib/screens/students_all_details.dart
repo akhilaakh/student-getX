@@ -1,35 +1,38 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:student_app/model/user.dart';
+import 'package:get/get.dart';
+import 'package:student_app/controller/student.dart';
+import 'package:student_app/model/student_model.dart';
 
-class StudetsDetails extends StatefulWidget {
-  final User user;
-  const StudetsDetails({super.key, required this.user});
+class StudentDetails extends GetView<StudentController> {
+  final Student student;
 
-  @override
-  State<StudetsDetails> createState() => _StudetsDetailsState();
-}
-
-class _StudetsDetailsState extends State<StudetsDetails> {
-  File? _image;
-  @override
-  void initState() {
-    if (widget.user.image != null) {
-      _image = File(widget.user.image!);
-    } else {
-      _image = null;
-    }
-    super.initState();
-  }
+  const StudentDetails({super.key, required this.student});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 225, 218, 218),
+        backgroundColor: const Color.fromARGB(255, 2, 33, 57),
+        title: const Center(
+          child: Padding(
+            padding: EdgeInsets.all(10),
+            child: Text(
+              "Student Details",
+              style: TextStyle(color: Colors.white),
+            ),
+          ),
+        ),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_ios_new),
+          color: Colors.white,
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
       ),
       body: Container(
-        color: Color.fromARGB(255, 225, 218, 218),
+        color: Colors.white,
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
@@ -49,30 +52,26 @@ class _StudetsDetailsState extends State<StudetsDetails> {
               Container(
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  boxShadow: [
-                    BoxShadow(
-                      color: Color.fromARGB(255, 11, 11, 11)
-                          .withOpacity(0.5), // Shadow color
-                      spreadRadius: 5, // Spread radius
-                      blurRadius: 7, // Blur radius
-                      offset: Offset(6, 6), // Offset (adjust as needed)
-                    ),
-                  ],
+                  color: Colors.transparent,
+                  border: Border.all(color: Colors.black12, width: 2),
                 ),
-                child: CircleAvatar(
-                  foregroundColor: const Color.fromARGB(255, 18, 16, 16),
-                  backgroundColor: Colors.black12,
-                  backgroundImage: _image != null
-                      ? FileImage(_image!) as ImageProvider
-                      : const AssetImage('assets/student11.jpg'),
-                  radius: 110,
+                child: ClipOval(
+                  child: SizedBox(
+                    width: 220,
+                    height: 220,
+                    child: student.imagePath != null
+                        ? Image.file(File(student.imagePath!),
+                            fit: BoxFit.cover)
+                        : Image.asset('assets/student11.jpg',
+                            fit: BoxFit.cover),
+                  ),
                 ),
               ),
               const SizedBox(
                 height: 60,
               ),
               Card(
-                color: Color.fromARGB(255, 213, 214, 214),
+                color: Color.fromARGB(255, 240, 242, 243),
                 child: Column(
                   children: [
                     SizedBox(
@@ -80,7 +79,9 @@ class _StudetsDetailsState extends State<StudetsDetails> {
                     ),
                     Text(
                       "User Full Details",
-                      style: TextStyle(fontSize: 22, color: Colors.red[400]),
+                      style: TextStyle(
+                          fontSize: 22,
+                          color: const Color.fromARGB(255, 2, 33, 57)),
                     ),
                     SizedBox(
                       height: 50,
@@ -92,12 +93,12 @@ class _StudetsDetailsState extends State<StudetsDetails> {
                           const Text(
                             "Name:",
                             style: TextStyle(
-                                color: Colors.teal,
+                                color: const Color.fromARGB(255, 2, 33, 57),
                                 fontSize: 16,
                                 fontWeight: FontWeight.w600),
                           ),
                           Text(
-                            widget.user.name ?? "",
+                            student.name ?? '',
                             style: const TextStyle(
                               fontSize: 16,
                             ),
@@ -115,12 +116,12 @@ class _StudetsDetailsState extends State<StudetsDetails> {
                           const Text(
                             "Age:",
                             style: TextStyle(
-                                color: Colors.teal,
+                                color: const Color.fromARGB(255, 2, 33, 57),
                                 fontSize: 16,
                                 fontWeight: FontWeight.w600),
                           ),
                           Text(
-                            widget.user.age ?? '',
+                            student.age.toString(),
                             style: const TextStyle(
                               fontSize: 16,
                             ),
@@ -138,12 +139,12 @@ class _StudetsDetailsState extends State<StudetsDetails> {
                           const Text(
                             "Student Class:",
                             style: TextStyle(
-                                color: Colors.teal,
+                                color: const Color.fromARGB(255, 2, 33, 57),
                                 fontSize: 16,
                                 fontWeight: FontWeight.w600),
                           ),
                           Text(
-                            widget.user.studentclass ?? '',
+                            student.studentClass,
                             style: const TextStyle(
                               fontSize: 16,
                             ),
@@ -158,12 +159,12 @@ class _StudetsDetailsState extends State<StudetsDetails> {
                           const Text(
                             "Gender:",
                             style: TextStyle(
-                                color: Colors.teal,
+                                color: const Color.fromARGB(255, 2, 33, 57),
                                 fontSize: 16,
                                 fontWeight: FontWeight.w600),
                           ),
                           Text(
-                            widget.user.gender ?? "",
+                            student.gender.toString(),
                             style: const TextStyle(
                               fontSize: 16,
                             ),

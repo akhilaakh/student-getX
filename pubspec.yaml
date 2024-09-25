@@ -35,6 +35,10 @@ dependencies:
   path_provider: ^2.1.1
   image_picker: ^0.8.3+3
   path: ^1.8.3
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+  get: ^4.6.6
+
 
 dev_dependencies:
   flutter_test:
@@ -46,6 +50,10 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
+  hive_generator: ^2.0.1
+  build_runner: ^2.4.9
+
+
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -60,8 +68,12 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/student11.jpg
-    - assets/AddStudent.jpg
+    - assets/
+    - assets/Students Celebrate Graduation Illustration concept on white background (1).jpeg
+    - assets/download (2).jpeg
+    - assets/download (3).jpeg
+    - assets/WhatsApp Image 2024-09-19 at 15.47.52_b821d333.jpg
+    - assets/Ícone de perfil de usuário em estilo plano Ilustração em vetor avatar membro em fundo isolado Conceito de negócio de sinal de permissão humana _ Vetor Premium.jpeg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 
